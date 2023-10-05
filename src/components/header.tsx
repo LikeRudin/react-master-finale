@@ -35,9 +35,9 @@ const Header = () => {
     pageNames[index],
   ]);
   return (
-    <>--
+    <>
       <Nav>
-        <Logo />
+        {/* <Logo /> */}
         <Items>
           {pathDatas.map((pathInfo, index) => {
             const [path, match, pageName] = pathInfo;
