@@ -1,2 +1,2 @@
 export * from "./banner.tsx";
-export * from "./movielist.tsx";
+export * from "./movie-element.tsx";

@@ -12,7 +12,7 @@ interface BannerProps {
 const Wrapper = styled.div<{ backgroundPath: string }>`
   height 100vh;
   padding: 60px;
-  background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,1)),
+  background-image: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0)),
    url(${(props) => props.backgroundPath});
   background-size: cover;
   background-position: center center;`;
