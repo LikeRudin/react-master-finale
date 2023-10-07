@@ -1,19 +1,15 @@
 import { motion } from "framer-motion";
 import styled from "styled-components";
 import { memo } from "react";
+
 interface MovieElementProps {
   backgroundPath: string;
-  posterPath: string;
   title: string;
-  subTitle: string;
-  genres: string;
-  overview: string;
-  score: number;
+  handleMovieClick: () => void;
+  layoutId: string;
 }
 
-const MovieVariants = {};
-
-const Wrapper = styled.div<{ backgroundPath: string }>`
+const Wrapper = styled(motion.div)<{ backgroundPath: string }>`
   height: 160px;
   width: 280px;
   background-image: linear-gradient(
@@ -28,24 +24,46 @@ const Wrapper = styled.div<{ backgroundPath: string }>`
   align-items: center;
   justify-content: flex-start;
   color: white;
+  border-radius: 10px;
 `;
+
+const WrapperVariants = {
+  initial: { opacity: 0.9, scale: 1, border: "none" },
+  hover: {
+    opacity: 1,
+    scale: 1.15,
+    border: "solid white 3px",
+    textShadow:
+      "-2.2px 0px black, 0px 2.2px black, 2.2px 0px black, 0px -2.2px black",
+  },
+};
 const Title = styled.span`
   font-size: x-large;
 `;
 
 const MovieElement = ({
   backgroundPath,
-  posterPath,
   title,
-  subTitle,
-  genres,
-  overview,
-  score,
+  handleMovieClick,
+  layoutId,
 }: MovieElementProps) => {
+  const onClick = () => {
+    handleMovieClick();
+  };
+
   return (
-    <Wrapper backgroundPath={backgroundPath}>
-      <Title>{title}</Title>
-    </Wrapper>
+    <>
+      <Wrapper
+        layoutId={layoutId}
+        onClick={onClick}
+        backgroundPath={backgroundPath}
+        variants={WrapperVariants}
+        initial="initial"
+        whileHover="hover"
+      >
+        <Title>{title}</Title>
+      </Wrapper>
+    </>
   );
 };
 
