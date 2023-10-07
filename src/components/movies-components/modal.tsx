@@ -6,6 +6,7 @@ import ScoreChart from "./score-chart";
 import { motion } from "framer-motion";
 import { LAYOUT_ID } from "../../constants/constants";
 import { useState } from "react";
+import { Props } from "react-apexcharts";
 
 interface MovieModalProps {
   preloaded: EditedMovie;
@@ -78,28 +79,36 @@ const Genres = styled.span``;
 const Body = styled.div`
   width: 100%;
   height: 70%;
-  background-color: rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 진0, 0, 0.5);
   color: white;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
 `;
-const Overview = styled.div`
+const Overview = styled.div<{ genres_ids: string[] }>`
   font-size: x-large;
   height: 40%;
-`;
-const BodyInfoBox = styled.div`
-  display: flex;
-  justify-content: flex-start;
-  align-items: center;
-  height: 40%;
-  overflow-x: auto;
+  font-family: ${(props) =>
+    props.genres_ids.includes("Horror")
+      ? "'Shadows Into Light', cursive"
+      : props.genres_ids.includes("Action")
+      ? "Bebas Neue', sans-serif"
+      : props.genres_ids.includes("Family")
+      ? "'Montserrat', sans-serif"
+      : "'Nanum Myeongjo', serif"};
 `;
 
-const WebLink = styled.a`
+const WebLink = styled.a<{ genres_ids: string[] }>`
   display: block;
   text-decoration: none;
-  color: #0802a3;
+  color: ${(props) =>
+    props.genres_ids.includes("Horror")
+      ? "#D80032"
+      : props.genres_ids.includes("Action")
+      ? "#362FD9"
+      : props.genres_ids.includes("Family")
+      ? "#FF7676"
+      : "#4FC0D0"};
   font-weight: bold;
   font-size: xxx-large;
   text-shadow: -2.2px 0px white, 0px 2.2px white, 2.2px 0px white,
@@ -108,6 +117,14 @@ const WebLink = styled.a`
   &:hover {
     transform: scale(1.5);
   }
+`;
+
+const BodyInfoBox = styled.div`
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  height: 40%;
+  overflow-x: auto;
 `;
 
 const CompanyBox = styled.div`
@@ -200,12 +217,18 @@ export const MovieModal = ({
           </ScoreBox>
         </Header>
         <Body>
-          <Overview>
+          <Overview genres_ids={genre_ids}>
             {data?.overview ? "Overview" : null}
             <br />
-            <br />
             {data?.overview}
-            <WebLink href={data?.homepage}>More Detail</WebLink>
+            <br />
+            <WebLink
+              href={data?.homepage}
+              target="_blank"
+              genres_ids={genre_ids}
+            >
+              More Detail
+            </WebLink>
           </Overview>
           <BodyInfoBox>
             {data?.production_companies.map((company) => {

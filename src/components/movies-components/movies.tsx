@@ -7,6 +7,7 @@ import MovieElement from "./movie-element";
 import { motion, AnimatePresence } from "framer-motion";
 import { MovieModal } from "./modal";
 import { useLocation } from "react-router-dom";
+import { LeftIcon, RightIcon } from "../header-components/icons";
 
 interface MoviesProps {
   movies: IMovie[];
@@ -33,9 +34,11 @@ const Slider = styled(motion.div)`
 `;
 
 const Button = styled.button`
-  width: 100px;
-  height: auto;
+  width: 60px;
+  height: 60px;
+  border-radius: 30px;
   z-index: 2;
+  background-color: rgba(8, 2, 163, 0.4);
 `;
 
 const MovieList = styled(motion.div)`
@@ -147,8 +150,12 @@ export const Movies = ({ movies }: MoviesProps) => {
         })()}
 
         <ButtonBox>
-          <Button onClick={() => changeIndex(-1)}>Left</Button>
-          <Button onClick={() => changeIndex(1)}>Right</Button>
+          <Button onClick={() => changeIndex(-1)}>
+            <LeftIcon />
+          </Button>
+          <Button onClick={() => changeIndex(1)}>
+            <RightIcon />
+          </Button>
         </ButtonBox>
         <SliderWrapper>
           <Slider>

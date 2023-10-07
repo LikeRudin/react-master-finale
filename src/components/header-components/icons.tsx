@@ -9,6 +9,15 @@ const Svg = styled.svg`
     stroke-width: 1;
   }
 `;
+const DirectionSvg = styled.svg`
+  width: 50px;
+  height: 50px;
+  color: rgb(8, 2, 163);
+  path {
+    stroke: white;
+    stroke-width: 1;
+  }
+`;
 
 const svgVariants = {
   initial: { pathLength: 0, fill: "rgba(255, 255, 255, 0)" },
@@ -187,3 +196,41 @@ export const Icons = [
   DisneyIcon,
   MarvelIcon,
 ];
+
+export const RightIcon = () => {
+  return (
+    <DirectionSvg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="w-6 h-6"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M13.5 4.5L21 12m0 0l-7.5 7.5M21 12H3"
+      />
+    </DirectionSvg>
+  );
+};
+
+export const LeftIcon = () => {
+  return (
+    <DirectionSvg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="w-6 h-6"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
+      />
+    </DirectionSvg>
+  );
+};
