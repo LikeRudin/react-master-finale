@@ -118,6 +118,9 @@ const WebLink = styled.a<{ genres_ids: string[] }>`
     transform: scale(1.5);
   }
 `;
+const OverViewText = styled.span`
+  font-size: xx-large;
+`;
 
 const BodyInfoBox = styled.div`
   display: flex;
@@ -218,10 +221,15 @@ export const MovieModal = ({
         </Header>
         <Body>
           <Overview genres_ids={genre_ids}>
-            {data?.overview ? "Overview" : null}
+            {data?.overview ? (
+              <>
+                <br />
+                <OverViewText>Overview</OverViewText> <br />
+              </>
+            ) : null}
             <br />
             {data?.overview}
-            <br />
+
             <WebLink
               href={data?.homepage}
               target="_blank"

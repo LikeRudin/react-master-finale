@@ -14,7 +14,7 @@ const Wrapper = styled(motion.div)<{ backgroundPath: string }>`
   width: 280px;
   background-image: linear-gradient(
       to right,
-      rgba(0, 0, 0, 1),
+      rgba(0, 0, 0, 0.5),
       rgba(0, 0, 0, 0)
     ),
     url(${(props) => props.backgroundPath});
@@ -28,11 +28,18 @@ const Wrapper = styled(motion.div)<{ backgroundPath: string }>`
 `;
 
 const WrapperVariants = {
-  initial: { opacity: 0.9, scale: 1, border: "none" },
+  initial: {
+    opacity: 0.9,
+    scale: 1,
+    border: "none",
+    color: "rgba(255,255,255,0.8)",
+  },
   hover: {
     opacity: 1,
     scale: 1.15,
+
     border: "solid white 3px",
+    color: "rgba(255,255,255,1)",
     textShadow:
       "-2.2px 0px black, 0px 2.2px black, 2.2px 0px black, 0px -2.2px black",
   },

@@ -37,7 +37,7 @@ const Button = styled.button`
   width: 60px;
   height: 60px;
   border-radius: 30px;
-  z-index: 2;
+  z-index: 55;
   background-color: rgba(8, 2, 163, 0.4);
 `;
 
@@ -46,6 +46,7 @@ const MovieList = styled(motion.div)`
   gap: 15px;
   grid-template-columns: repeat(5, 1fr);
   position: absolute;
+  bottom: 0.5%;
   width: 100%;
 `;
 

@@ -9,7 +9,8 @@ import reset from "styled-reset";
 import { theme } from "./theme.ts";
 
 const GlobalStyle = createGlobalStyle`
-${reset}`;
+${reset}
+body{background-color:black}`;
 const rootElement = document.getElementById("root")!;
 const root = ReactDOM.createRoot(rootElement);
 const client = new QueryClient();
