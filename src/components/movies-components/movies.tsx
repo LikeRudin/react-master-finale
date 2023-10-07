@@ -5,8 +5,8 @@ import { useState } from "react";
 import { Banner } from ".";
 import MovieElement from "./movie-element";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLocation, useNavigate } from "react-router-dom";
 import { MovieModal } from "./modal";
+import { useLocation } from "react-router-dom";
 
 interface MoviesProps {
   movies: IMovie[];
@@ -77,19 +77,17 @@ export const Movies = ({ movies }: MoviesProps) => {
   const toggleLeaving = () => setLeaving((prev) => !prev);
   const [direction, setDirection] = useState<1 | -1>(1);
   const [index, setIndex] = useState(0);
-
   const { pathname } = useLocation();
+
   const [isModalOpened, setIsModalOpened] = useState(false);
-  const navigate = useNavigate();
 
   const handleMovieClick = (movie: EditedMovie) => {
-    setIsModalOpened(true);
     setBannerData(movie);
-    navigate(`${pathname}/${bannerData.id}`);
+    setIsModalOpened(true);
   };
+
   const closeModal = () => {
     setIsModalOpened(false);
-    navigate(-1);
   };
   const changeIndex = (dir: 1 | -1) => {
     if (leaving) {
@@ -167,7 +165,7 @@ export const Movies = ({ movies }: MoviesProps) => {
                   const { backdrop_path, title, id } = movie;
                   return (
                     <MovieElement
-                      layoutId={`${id}`}
+                      layoutId={`${pathname}-${id}`}
                       key={`${index}-${id}`}
                       handleMovieClick={() => handleMovieClick(movie)}
                       backgroundPath={String(makeBgPath(backdrop_path))}
@@ -180,7 +178,11 @@ export const Movies = ({ movies }: MoviesProps) => {
           </Slider>
         </SliderWrapper>
         {isModalOpened && (
-          <MovieModal preloaded={bannerData} handleRedirect={closeModal} />
+          <MovieModal
+            preloaded={bannerData}
+            layoutId={`${pathname}-${bannerData.id}`}
+            handleRedirect={closeModal}
+          />
         )}
       </Wrapper>
     </>

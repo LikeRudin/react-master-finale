@@ -59,11 +59,7 @@ export const Banner = ({
   clickMoreInfo,
 }: BannerProps) => {
   return (
-    <Wrapper
-      backgroundPath={backgroundPath}
-      layoutId={LAYOUT_ID.BOX}
-      animate={false}
-    >
+    <Wrapper backgroundPath={backgroundPath} layoutId={LAYOUT_ID.BOX}>
       <InfoBox>
         <Title>
           {title} {title !== subTitle ? `(${subTitle})` : null}

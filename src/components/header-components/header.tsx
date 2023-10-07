@@ -42,7 +42,7 @@ const Header = () => {
             return (
               <>
                 <PageLink
-                  key={index}
+                  key={`${pathNames}-${index}`}
                   path={path as string}
                   match={match as boolean}
                   text={pageName as string}

@@ -5,10 +5,11 @@ import { makeBgPath, makeImagePath } from "../../api";
 import ScoreChart from "./score-chart";
 import { motion } from "framer-motion";
 import { LAYOUT_ID } from "../../constants/constants";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 interface MovieModalProps {
   preloaded: EditedMovie;
+  layoutId: string;
   handleRedirect: () => void;
 }
 const Overlay = styled(motion.div)`
@@ -142,7 +143,11 @@ const Span = styled.span`
   bottom: 2%;
 `;
 
-export const MovieModal = ({ preloaded, handleRedirect }: MovieModalProps) => {
+export const MovieModal = ({
+  preloaded,
+  handleRedirect,
+  layoutId,
+}: MovieModalProps) => {
   const { backdrop_path, id, original_title, genre_ids, poster_path, title } =
     preloaded;
   const { data, isLoading } = useQuery<IMovieDetail>(["movie", `${id}`], () =>
@@ -161,7 +166,7 @@ export const MovieModal = ({ preloaded, handleRedirect }: MovieModalProps) => {
 
   return (
     <Overlay onClick={goBack}>
-      <ModalWrapper layoutId={isClicked ? LAYOUT_ID.BOX : `${id}`}>
+      <ModalWrapper layoutId={isClicked ? LAYOUT_ID.BOX : layoutId}>
         <Header
           initial={false}
           backgroundPath={makeBgPath(backdrop_path)}
