@@ -1,11 +1,13 @@
 import { Outlet } from "react-router-dom";
 
+import Header from "./components/header-components/header";
+
 const App = () => {
   return (
-    <div>
-      <h1>hello master</h1>
+    <>
+      <Header />
       <Outlet />
-    </div>
+    </>
   );
 };
 
