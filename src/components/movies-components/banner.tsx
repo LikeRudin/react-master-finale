@@ -1,5 +1,6 @@
 import styled from "styled-components";
-
+import { motion } from "framer-motion";
+import { LAYOUT_ID } from "../../constants/constants";
 interface BannerProps {
   backgroundPath: string;
   posterPath: string;
@@ -8,9 +9,10 @@ interface BannerProps {
   genres: string;
   overview: string;
   score: number;
+  clickMoreInfo: () => void;
 }
-const Wrapper = styled.div<{ backgroundPath: string }>`
-  height 100vh;
+const Wrapper = styled(motion.div)<{ backgroundPath: string }>`
+  height 60vh;
   padding: 60px;
   background-image: linear-gradient(to right, rgba(0,0,0,1), rgba(0,0,0,0)),
    url(${(props) => props.backgroundPath});
@@ -50,23 +52,25 @@ const Overview = styled.span`
 `;
 
 export const Banner = ({
-  posterPath,
   backgroundPath,
   subTitle,
   title,
-  genres,
   overview,
-  score,
+  clickMoreInfo,
 }: BannerProps) => {
   return (
-    <Wrapper backgroundPath={backgroundPath}>
+    <Wrapper
+      backgroundPath={backgroundPath}
+      layoutId={LAYOUT_ID.BOX}
+      animate={false}
+    >
       <InfoBox>
         <Title>
-          {title} ({subTitle})
+          {title} {title !== subTitle ? `(${subTitle})` : null}
         </Title>
         <BelowBox>
           <Overview>
-            {overview} <Button>More Info</Button>
+            {overview} <Button onClick={clickMoreInfo}>More Info</Button>
           </Overview>
         </BelowBox>
       </InfoBox>
