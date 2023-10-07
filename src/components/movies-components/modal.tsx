@@ -62,7 +62,7 @@ const ScoreBox = styled.div`
 `;
 const ScoreBoxSpan = styled.span`
   position: absolute;
-  top: 10%;
+  top: 1%;
   left: 25%;
   font-size: x-large;
   color: tomato;
@@ -193,7 +193,7 @@ export const MovieModal = ({
           <ScoreBox>
             {isLoading ? null : (
               <>
-                <ScoreBoxSpan>FB's Meta Score</ScoreBoxSpan>
+                <ScoreBoxSpan>영진 Meta Score</ScoreBoxSpan>
                 <ScoreChart movieDetail={data as IMovieDetail} />
               </>
             )}

@@ -85,13 +85,13 @@ const ScoreChart = ({ movieDetail }: ScoreChartProps) => {
                       <h1>평가점수</h1>
                       <h2>별점 : ${movieDetail.vote_average}</h2>
                       <h2>평가자 수: ${movieDetail.vote_count}</h2>
-                      <h2>FB's Score: ${scores[dataPointIndex]}</h2>
+                      <h2>영진 Score: ${scores[dataPointIndex]}</h2>
                     </div>`;
                 } else if (dataPointIndex === 1) {
                   return `
                     <div>
                       <h1>극장상영일수: ${movieDetail.runtime}</h1>
-                      <h2>FB's Score: ${scores[dataPointIndex]}</h2>
+                      <h2>영진 Score: ${scores[dataPointIndex]}</h2>
                     </div>`;
                 } else if (dataPointIndex === 2) {
                   return `
@@ -99,13 +99,13 @@ const ScoreChart = ({ movieDetail }: ScoreChartProps) => {
                       <h1>흑자지수</h1>
                       <h2>제작비용: ${movieDetail.budget}</h2>
                       <h2>수입: ${movieDetail.revenue}</h2>
-                      <h2>FB's Score: ${scores[dataPointIndex]}</h2>
+                      <h2>영진 Score: ${scores[dataPointIndex]}</h2>
                     </div>`;
                 } else if (dataPointIndex === 3) {
                   return `
                     <div>
                       <h1>대중성지수: ${movieDetail.popularity}</h1>
-                      <h2>FB's Score: ${scores[dataPointIndex]}</h2>
+                      <h2>영진 Score: ${scores[dataPointIndex]}</h2>
                     </div>`;
                 } else if (dataPointIndex === 4) {
                   return `
@@ -118,7 +118,7 @@ const ScoreChart = ({ movieDetail }: ScoreChartProps) => {
                             <li key=${index}>${english_name} /${iso_639_1} ${name} </li>`;
                         })}
                       </ul>
-                      <h2>FB's Score: ${scores[dataPointIndex]}</h2>
+                      <h2>영진 Score: ${scores[dataPointIndex]}</h2>
                     </div>`;
                 }
               },

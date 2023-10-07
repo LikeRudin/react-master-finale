@@ -37,7 +37,7 @@ const Header = () => {
     <>
       <Nav>
         <Items>
-          {pathDatas.map((pathInfo, index) => {
+          {pathDatas.slice(0, 3).map((pathInfo, index) => {
             const [path, match, pageName] = pathInfo;
             return (
               <>

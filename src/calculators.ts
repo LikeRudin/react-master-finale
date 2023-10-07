@@ -2,11 +2,11 @@ import { IMovieDetail } from "./api";
 
 const makeRevenueScore = (budget: number, revenue: number) => {
   if (budget === 0 && revenue === 0) {
-    return 2.5;
+    return 2;
   }
   const revenueRatio = revenue / budget;
   const score = Math.floor(10 * Math.pow(revenueRatio, 0.5)) / 10;
-  const scoreWithLimit = Math.min(10, score);
+  const scoreWithLimit = Math.min(10, score * 2);
   return scoreWithLimit / 2;
 };
 

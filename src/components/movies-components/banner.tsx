@@ -37,7 +37,16 @@ const Title = styled.span`
   font-size: xxx-large;
 `;
 
-const Button = styled.button``;
+const Button = styled.button`
+  width: 150px;
+  font-size: x-large;
+  border-radius: 15px;
+  background-color: rgba(8, 2, 163, 0.4);
+  color: white;
+  &:hover {
+    scale: 1.2;
+  }
+`;
 
 const BelowBox = styled.div`
   width: 800px;
