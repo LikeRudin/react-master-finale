@@ -5,6 +5,7 @@ import {
   NowPlaying,
   DisneyCharacter,
   MarvelHero,
+  Archive,
 } from "./routes";
 import App from "./App";
 import { PATH } from "./constants/constants.ts";
@@ -28,6 +29,7 @@ export const router = createBrowserRouter([
       },
       { path: `${PATH.DISNEY}`, element: <DisneyCharacter /> },
       { path: `${PATH.MARVEL}`, element: <MarvelHero /> },
+      { path: `${PATH.ARCHIVE}`, element: <Archive /> },
     ],
   },
 ]);
