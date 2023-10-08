@@ -106,13 +106,13 @@ export const Heros = ({ heros }: HerosProps) => {
 
     addContents((previousContents) => {
       const updatedContents = [
-        ...previousContents,
         {
           id: Date.now(),
           name,
           ImagePath: `${path}.${extension}`,
           comment: "save your comment",
         },
+        ...previousContents,
       ];
       saveContentsToLocalStorage(updatedContents);
       return updatedContents;

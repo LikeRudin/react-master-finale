@@ -6,7 +6,8 @@ import ScoreChart from "./score-chart";
 import { motion } from "framer-motion";
 import { LAYOUT_ID } from "../../constants/constants";
 import { useState } from "react";
-import { Props } from "react-apexcharts";
+import { SaveIcon } from "../header-components/icons";
+import { setContents, saveContentsToLocalStorage } from "../../atoms";
 
 interface MovieModalProps {
   preloaded: EditedMovie;
@@ -162,12 +163,22 @@ const Span = styled.span`
   position: absolute;
   bottom: 2%;
 `;
+const SaveButton = styled.button`
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  &:hover {
+    scale: 1.1;
+    color: tomato;
+  }
+`;
 
 export const MovieModal = ({
   preloaded,
   handleRedirect,
   layoutId,
 }: MovieModalProps) => {
+  const addContents = setContents();
   const { backdrop_path, id, original_title, genre_ids, poster_path, title } =
     preloaded;
   const { data, isLoading } = useQuery<IMovieDetail>(["movie", `${id}`], () =>
@@ -182,6 +193,22 @@ export const MovieModal = ({
     } else {
       setIsClicked(true);
     }
+  };
+
+  const handleSave = () => {
+    addContents((previousContents) => {
+      const updatedContents = [
+        {
+          id: Date.now(),
+          name: preloaded.title,
+          ImagePath: makeImagePath(poster_path),
+          comment: "save your comment",
+        },
+        ...previousContents,
+      ];
+      saveContentsToLocalStorage(updatedContents);
+      return updatedContents;
+    });
   };
 
   return (
@@ -209,6 +236,9 @@ export const MovieModal = ({
                 );
               })}
             </Countries>
+            <SaveButton onClick={handleSave}>
+              <SaveIcon />
+            </SaveButton>
           </HeaderInfoBox>
           <ScoreBox>
             {isLoading ? null : (

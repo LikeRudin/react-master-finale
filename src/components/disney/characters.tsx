@@ -108,13 +108,13 @@ export const Characters = ({ characters }: CharactersProps) => {
 
     addContents((previousContents) => {
       const updatedContents = [
-        ...previousContents,
         {
           id: Date.now(),
           name,
           ImagePath: imageUrl,
           comment: "save your comment",
         },
+        ...previousContents,
       ];
       saveContentsToLocalStorage(updatedContents);
       return updatedContents;

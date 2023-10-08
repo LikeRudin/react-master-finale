@@ -1,8 +1,14 @@
-import { DragDropContext, Droppable } from "react-beautiful-dnd";
+import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
 import styled from "styled-components";
-import { useEffect } from "react";
-import { loadContentsFromLocalStorage, contentsState } from "../atoms";
-import { useRecoilState } from "recoil";
+import { useEffect, useState } from "react";
+import {
+  loadContentsFromLocalStorage,
+  contentsState,
+  saveContentsToLocalStorage,
+  getContents,
+} from "../atoms";
+import { SavedModal } from "../components/archive/saved-mordal";
+import { useRecoilState, useSetRecoilState } from "recoil";
 import { Saved } from "../components/archive/saved";
 
 const Wrapper = styled(DragDropContext)`
@@ -14,12 +20,10 @@ const DropSpace = styled.div<{ isDraggingOver: boolean }>`
   width: 100%;
   background-color: ${(props) =>
     props.isDraggingOver ? "#D6CC99" : "#001524"};
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  grid-auto-rows: 200px; /
-  gap: 10px; 
-  overflow-x: auto; 
-  width: 100%; 
+  display: flex;
+  justify-content: flex-start;
+  overflow-x: auto;
+  align-items: center;
 `;
 const TrashZone = styled.div<{ isDraggingOver: boolean }>`
   height: 20vh;
@@ -28,7 +32,15 @@ const TrashZone = styled.div<{ isDraggingOver: boolean }>`
     props.isDraggingOver ? "#D83F31" : "#B4B4B3"};
 `;
 export const Archive = () => {
-  const [contentList, setContentList] = useRecoilState(contentsState);
+  const [isModalOpened, setIsModalOpened] = useState(false);
+  const [selectedIndex, setSelectedIndex] = useState(0);
+  const contentList = getContents();
+  const setContentList = useSetRecoilState(contentsState);
+  const handleSavedClick = (index: number) => {
+    setSelectedIndex(index);
+    setIsModalOpened(true);
+  };
+  const closeModal = () => setIsModalOpened(false);
 
   useEffect(() => {
     const contents = loadContentsFromLocalStorage();
@@ -36,13 +48,33 @@ export const Archive = () => {
       setContentList(contents);
     }
   }, []);
-  const onDragEnd = () => {
-    console.log("drag finishied");
+  const onDragEnd = ({ source, destination }: DropResult) => {
+    if (!destination) {
+      return;
+    }
+    console.log(destination?.droppableId);
+    if (source.droppableId === destination.droppableId) {
+      setContentList((oldContents) => {
+        const newData = JSON.parse(JSON.stringify(oldContents));
+        const [target] = newData.splice(source.index, 1);
+        newData.splice(destination.index, 0, target);
+        saveContentsToLocalStorage(newData);
+        return newData;
+      });
+    }
+    if (destination.droppableId === "trash") {
+      setContentList((oldContents) => {
+        const newData = JSON.parse(JSON.stringify(oldContents));
+        newData.splice(source.index, 1);
+        saveContentsToLocalStorage(newData);
+        return newData;
+      });
+    }
   };
   return (
     <>
       <Wrapper onDragEnd={onDragEnd}>
-        <Droppable droppableId="main">
+        <Droppable droppableId="main" direction="horizontal">
           {(provided, snapshot) => {
             return (
               <DropSpace
@@ -50,15 +82,17 @@ export const Archive = () => {
                 {...provided.droppableProps}
                 isDraggingOver={snapshot.isDraggingOver}
               >
-                {contentList.map((content) => (
+                {contentList.map((content, index) => (
                   <Saved
                     key={`saved-${content.id}`}
                     id={content.id}
-                    comment={content.comment}
                     imagePath={content.ImagePath}
                     name={content.name}
+                    index={index}
+                    handleClick={() => handleSavedClick(index)}
                   ></Saved>
                 ))}
+                {provided.placeholder}
               </DropSpace>
             );
           }}
@@ -70,11 +104,20 @@ export const Archive = () => {
                 ref={trashProvided.innerRef}
                 {...trashProvided.droppableProps}
                 isDraggingOver={trashSnapShot.isDraggingOver}
-              ></TrashZone>
+              >
+                {trashProvided.placeholder}
+              </TrashZone>
             );
           }}
         </Droppable>
       </Wrapper>
+      {isModalOpened && (
+        <SavedModal
+          modalData={contentList[selectedIndex]}
+          index={selectedIndex}
+          handleClose={closeModal}
+        />
+      )}
     </>
   );
 };
