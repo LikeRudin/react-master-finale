@@ -188,6 +188,59 @@ const MarvelIcon = () => {
     </Svg>
   );
 };
+export const ArchiveIcon = () => {
+  return (
+    <>
+      <Svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className="w-6 h-6"
+      >
+        <motion.path
+          variants={svgVariants}
+          initial="initial"
+          animate="animate"
+          transition={{
+            default: { duration: 0.6 },
+            fill: { duration: 0.6, delay: 0.25 },
+          }}
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5M10 11.25h4M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
+        />
+      </Svg>
+    </>
+  );
+};
+
+export const SearchIcon = () => {
+  return (
+    <Svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="w-6 h-6"
+    >
+      <motion.path
+        variants={svgVariants}
+        initial="initial"
+        animate="animate"
+        transition={{
+          default: { duration: 0.6 },
+          fill: { duration: 0.6, delay: 0.25 },
+        }}
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M15.75 15.75l-2.489-2.489m0 0a3.375 3.375 0 10-4.773-4.773 3.375 3.375 0 004.774 4.774zM21 12a9 9 0 11-18 0 9 9 0 0118 0z"
+      />
+    </Svg>
+  );
+};
 
 export const Icons = [
   PopularIcon,
@@ -195,6 +248,7 @@ export const Icons = [
   NowPlayingIcon,
   DisneyIcon,
   MarvelIcon,
+  ArchiveIcon,
 ];
 
 export const RightIcon = () => {
@@ -232,5 +286,24 @@ export const LeftIcon = () => {
         d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"
       />
     </DirectionSvg>
+  );
+};
+
+export const SaveIcon = () => {
+  return (
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      fill="none"
+      viewBox="0 0 24 24"
+      strokeWidth={1.5}
+      stroke="currentColor"
+      className="w-6 h-6"
+    >
+      <path
+        strokeLinecap="round"
+        strokeLinejoin="round"
+        d="M20.25 7.5l-.625 10.632a2.25 2.25 0 01-2.247 2.118H6.622a2.25 2.25 0 01-2.247-2.118L3.75 7.5m8.25 3v6.75m0 0l-3-3m3 3l3-3M3.375 7.5h17.25c.621 0 1.125-.504 1.125-1.125v-1.5c0-.621-.504-1.125-1.125-1.125H3.375c-.621 0-1.125.504-1.125 1.125v1.5c0 .621.504 1.125 1.125 1.125z"
+      />
+    </svg>
   );
 };

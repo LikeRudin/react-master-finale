@@ -20,6 +20,7 @@ const Header = () => {
     PATH.NOWPLAYING,
     PATH.DISNEY,
     PATH.MARVEL,
+    PATH.ARCHIVE,
   ];
   const pageNames = [
     "POPULAR",
@@ -27,6 +28,7 @@ const Header = () => {
     "NOW PLAYING",
     "DISNEY",
     "HEROS",
+    "ARCHIVE",
   ];
   const pathDatas = pathNames.map((path, index) => [
     path,
@@ -37,7 +39,7 @@ const Header = () => {
     <>
       <Nav>
         <Items>
-          {pathDatas.slice(0, 3).map((pathInfo, index) => {
+          {pathDatas.map((pathInfo, index) => {
             const [path, match, pageName] = pathInfo;
             return (
               <>

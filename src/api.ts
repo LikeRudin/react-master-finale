@@ -34,7 +34,7 @@ export function getDisneyCharacterDetail(id: number) {
 export const getMarvelHeros = async () => {
   const json = await (
     await fetch(
-      `https://marvel-proxy.nomadcoders.workers.dev/v1/public/characters?limit=50&orderBy=modified&series=24229,1058,2023`
+      `https://marvel-proxy.nomadcoders.workers.dev/v1/public/characters?limit=100&orderBy=modified&series=24229,1058,2023`
     )
   ).json();
   return json.data.results;
@@ -121,4 +121,39 @@ interface SpokenLanguage {
 export interface IAPIResponse {
   page: number;
   results: IMovie[];
+}
+
+export interface IDisneyElement {
+  id: number;
+  name: string;
+  imageUrl: string;
+}
+export type IDisneyApiResponse = IDisneyElement[];
+
+export interface IMarvelElement {
+  id: number;
+  name: string;
+  description: string;
+  modified: string;
+  resourceURI: string;
+  urls: UrlElement[];
+  comics: {
+    items?: string[] | undefined;
+  };
+  series: {
+    items?: string[] | undefined;
+  };
+  stories: object;
+  events: object;
+  thumbnail: {
+    path: string;
+    extension: string;
+  };
+}
+
+export type MarvelApiResponse = IMarvelElement[];
+
+export interface UrlElement {
+  type: string;
+  url: string;
 }

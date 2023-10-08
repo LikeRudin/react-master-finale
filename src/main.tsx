@@ -16,10 +16,12 @@ const root = ReactDOM.createRoot(rootElement);
 const client = new QueryClient();
 
 root.render(
-  <ThemeProvider theme={theme}>
-    <QueryClientProvider client={client}>
-      <GlobalStyle />
-      <RouterProvider router={router} />
-    </QueryClientProvider>
-  </ThemeProvider>
+  <RecoilRoot>
+    <ThemeProvider theme={theme}>
+      <QueryClientProvider client={client}>
+        <GlobalStyle />
+        <RouterProvider router={router} />
+      </QueryClientProvider>
+    </ThemeProvider>
+  </RecoilRoot>
 );

@@ -4,12 +4,15 @@ export const enum PATH {
   COMINGSOON = "/coming-soon",
   DISNEY = "/disney",
   MARVEL = "/marvel",
+  ARCHIVE = "/archive",
 }
 
 export const enum QUERY_KEY {
   POPULAR = "popular",
   NOWPLAYING = "now-playing",
   COMINGSOON = "coming-soon",
+  DISNEY = "disney",
+  MARVEL = "marvel",
 }
 
 export const enum LAYOUT_ID {
