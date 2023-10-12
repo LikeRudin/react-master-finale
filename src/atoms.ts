@@ -41,15 +41,6 @@ export const contentsState = atom<IContent[]>({
   ],
 });
 
-export const saveContentsToLocalStorage = (data: IContent[]) => {
-  localStorage.setItem("contents", JSON.stringify(data));
-};
-
-export const loadContentsFromLocalStorage = (): IContent[] | null => {
-  const contents = JSON.parse(localStorage.getItem("contents") || "null");
-  return contents;
-};
-
 export const setContents = () => {
   const setter = useSetRecoilState(contentsState);
   return setter;
@@ -97,4 +88,13 @@ export const contentSelector = selector<ExtendedIContent[]>({
 
 export const getContents = () => {
   return useRecoilValue(contentSelector);
+};
+
+export const saveContentsToLocalStorage = (data: IContent[]) => {
+  localStorage.setItem("contents", JSON.stringify(data));
+};
+
+export const loadContentsFromLocalStorage = (): IContent[] | null => {
+  const contents = JSON.parse(localStorage.getItem("contents") || "null");
+  return contents;
 };
