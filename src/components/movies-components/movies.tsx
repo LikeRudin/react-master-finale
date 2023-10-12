@@ -39,6 +39,9 @@ const Button = styled.button`
   border-radius: 30px;
   z-index: 55;
   background-color: rgba(8, 2, 163, 0.4);
+  &:hover {
+    cursor: pointer;
+  }
 `;
 
 const MovieList = styled(motion.div)`

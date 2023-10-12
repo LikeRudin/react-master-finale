@@ -3,12 +3,9 @@ import styled from "styled-components";
 import { IDisneyApiResponse, IDisneyElement } from "../../api";
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import {
-  saveContentsToLocalStorage,
-  contentsState,
-  setContents,
-} from "../../atoms";
+import { saveContentsToLocalStorage, setContents } from "../../atoms";
 import { SaveIcon } from "../header-components/icons";
+import { SaveButton } from "../common-styles";
 
 const CharacterList = styled.div<{
   height: number;
@@ -36,16 +33,6 @@ interface CharactersProps {
   characters: IDisneyApiResponse;
 }
 
-const SaveButton = styled.button`
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-  opacity: 0;
-  &:hover {
-    scale: 1.1;
-    color: tomato;
-  }
-`;
 const CharacterContainer = styled(motion.div)<{ backgroundPath: string }>`
   margin-top: 50px;
   background-image: url(${(props) => props.backgroundPath});

@@ -5,6 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import React, { useState } from "react";
 import { SaveIcon } from "../header-components/icons";
 import { setContents, saveContentsToLocalStorage } from "../../atoms";
+import { SaveButton } from "../common-styles";
 
 const HeroList = styled.div<{
   height: number;
@@ -26,16 +27,6 @@ const HeroList = styled.div<{
   position: absolute;
   bottom: 5%;
   transition: top 1.5 ease-in-out;
-`;
-const SaveButton = styled.button`
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-  opacity: 0;
-  &:hover {
-    scale: 1.1;
-    color: tomato;
-  }
 `;
 
 const HeroContainer = styled(motion.div)<{ backgroundPath: string }>`

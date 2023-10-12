@@ -8,6 +8,7 @@ import { LAYOUT_ID } from "../../constants/constants";
 import { useState } from "react";
 import { SaveIcon } from "../header-components/icons";
 import { setContents, saveContentsToLocalStorage } from "../../atoms";
+import { SaveButton } from "../common-styles";
 
 interface MovieModalProps {
   preloaded: EditedMovie;
@@ -162,15 +163,6 @@ const Span = styled.span`
   font-size: large;
   position: absolute;
   bottom: 2%;
-`;
-const SaveButton = styled.button`
-  width: 50px;
-  height: 50px;
-  border-radius: 25px;
-  &:hover {
-    scale: 1.1;
-    color: tomato;
-  }
 `;
 
 export const MovieModal = ({
