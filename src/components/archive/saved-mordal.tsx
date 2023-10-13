@@ -1,8 +1,9 @@
-import { ExtendedIContent, TextAreaSelector } from "../../atoms";
 import styled from "styled-components";
 import { motion } from "framer-motion";
 import React from "react";
+
 import { useRecoilState } from "recoil";
+import { ExtendedIContent, TextAreaSelector } from "../../atoms";
 
 const Overlay = styled(motion.div)`
   position: fixed;

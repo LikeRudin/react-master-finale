@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Draggable } from "react-beautiful-dnd";
-import { motion } from "framer-motion";
+
 interface SavedProps {
   imagePath: string;
   name: string;
