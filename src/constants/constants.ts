@@ -5,6 +5,7 @@ export const enum PATH {
   DISNEY = "/disney",
   MARVEL = "/marvel",
   ARCHIVE = "/archive",
+  SEARCH = "/search",
 }
 
 export const enum QUERY_KEY {
@@ -13,6 +14,7 @@ export const enum QUERY_KEY {
   COMINGSOON = "coming-soon",
   DISNEY = "disney",
   MARVEL = "marvel",
+  SEARCH = "search",
 }
 
 export const enum LAYOUT_ID {
