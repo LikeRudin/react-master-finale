@@ -1,6 +1,7 @@
-import styled from "styled-components";
 import { useRouteError, Link } from "react-router-dom";
 import { AnimatePresence, motion } from "framer-motion";
+
+import styled from "styled-components";
 
 const Wrapper = styled.div`
   height: 80vh;

@@ -1,6 +1,7 @@
-import { QUERY_KEY } from "../constants/constants";
-import { getMarvelHeros, MarvelApiResponse } from "../api";
 import { useQuery } from "@tanstack/react-query";
+import { QUERY_KEY } from "../constants/constants";
+
+import { getMarvelHeros, MarvelApiResponse } from "../api";
 import { Heros } from "../components/marvel/heros";
 
 export const MarvelHero = () => {

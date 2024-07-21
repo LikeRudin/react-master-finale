@@ -1,15 +1,20 @@
-import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
-import styled from "styled-components";
 import { useEffect, useState } from "react";
+import {  useSetRecoilState } from "recoil";
+
+import { DragDropContext, DropResult, Droppable } from "react-beautiful-dnd";
+
 import {
   loadContentsFromLocalStorage,
   contentsState,
   saveContentsToLocalStorage,
   getContents,
 } from "../atoms";
+
 import { SavedModal } from "../components/archive/saved-mordal";
-import { useRecoilState, useSetRecoilState } from "recoil";
 import { Saved } from "../components/archive/saved";
+
+import styled from "styled-components";
+
 
 const Wrapper = styled(DragDropContext)`
   height: 80vh;

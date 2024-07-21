@@ -1,7 +1,9 @@
-import { IDisneyApiResponse, getDisneyCharacters } from "../api";
-import { Characters } from "../components/disney/characters";
 import { useQuery } from "@tanstack/react-query";
 import { QUERY_KEY } from "../constants/constants";
+
+import { IDisneyApiResponse, getDisneyCharacters } from "../api";
+
+import { Characters } from "../components/disney/characters";
 
 export const DisneyCharacter = () => {
   const { data } = useQuery<IDisneyApiResponse>(
